@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SimpleMat
-  m_Shader: {fileID: 4800000, guid: 3ee532d59615cb9488fe27aedb26024b, type: 3}
+  m_Shader: {fileID: 4800000, guid: 064a3eb07bc4e5e4fb4dcb80ea770ea3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -63,9 +63,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Amount: 1
+    - _Amplitude: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _CutoutThresh: 0.2
     - _DetailNormalMapScale: 1
+    - _Distance: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -78,7 +82,9 @@ Material:
     - _Sigma: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 1
     - _SrcBlend: 1
+    - _Transparency: 0.5
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
@@ -89,3 +95,4 @@ Material:
     - _ColorSecond: {r: 0.7794118, g: 0.3553201, b: 0.3553201, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
