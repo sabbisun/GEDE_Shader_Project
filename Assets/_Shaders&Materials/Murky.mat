@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: No backface
+  m_Name: Murky
   m_Shader: {fileID: 4800000, guid: d6090eccb3fc140a7b3dcf3eef3a1bb7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -54,27 +54,35 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Thickness:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Attenuation: 0.651
+    - _Attenuation: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Distortion: 0.339
+    - _Distortion: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 1
     - _GlossyReflections: 1
-    - _Metallic: 0.385
+    - _Metallic: 0.52
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 1.56
-    - _Scale: 2.94
+    - _Power: 2.34
+    - _Scale: 1.78
+    - _Shininess: 0.09
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.39251733, g: 0.65962595, b: 0.9705882, a: 1}
+    - _Ambient: {r: 0.7882249, g: 0.8602941, b: 0.11386246, a: 1}
+    - _Color: {r: 0.33823532, g: 0.97261655, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SubColor: {r: 0.60294116, g: 0.35467127, b: 0.35467127, a: 1}
