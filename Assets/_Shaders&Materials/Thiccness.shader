@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Custom/CrystalBall" {
+﻿Shader "Custom/Thiccness" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		//_MainTex ("Color (RGB) Alpha (A)", 2D) = "white" {}
@@ -12,12 +10,13 @@ Shader "Custom/CrystalBall" {
 		_Distortion ("Distortion", Range(0,1)) = 0.0
 		_Attenuation ("Attenuation", Range(0,1)) = 0.0
 		_Ambient ("Ambient", Color) = (1,1,1,1)
+		_ThicknessTex ("Thickness_DontSetThis", 2D) = "black" {}
 	}
 	SubShader {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
 		LOD 200
 
-		Pass {
+		/*Pass {
 			ZWrite On
 			ColorMask 0
 			CGPROGRAM
@@ -42,12 +41,32 @@ Shader "Custom/CrystalBall" {
 			ENDCG
 		}
 
+		Pass {
+			Cull Front
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#include "UnityCG.cginc"
+			struct v2f {
+	            float4 pos : SV_POSITION;
+	        };
+
+			v2f vert (appdata_base input) {
+				v2f o;
+				o.pos = UnityObjectToClipPos (input.vertex);
+				return o;
+			}
+			fixed4 frag (vertexOutput v, ) {
+				
+			}
+			ENDCG
+		}*/
+
 		//Turn onalpha blending
-		//Blend DstColor One
+		Blend DstColor One
 		//Turn off backface culling
-		//Cull Off
-		//ZWrite On
-		//ColorMask 0
+		Cull Off
+
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standardfrag fullforwardshadows alpha
@@ -73,6 +92,9 @@ Shader "Custom/CrystalBall" {
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
 		// #pragma instancing_options assumeuniformscaling
+		UNITY_INSTANCING_BUFFER_START(Props)
+			// put more per-instance properties here
+		UNITY_INSTANCING_BUFFER_END(Props)
 
 		#include "UnityPBSLighting.cginc"
 	    inline fixed4 LightingStandardfrag(SurfaceOutputStandard s, fixed3 viewDir, UnityGI gi) {
@@ -91,7 +113,7 @@ Shader "Custom/CrystalBall" {
 	        //Adding backlight illumination scaled by intensity parameter
 	        float VdotH = pow(saturate(dot(V, -H)), _Power) * _Scale;
 			float3 I = _Attenuation * (VdotH + _Ambient);
-			//pb.a = VdotH;
+			pb.a = VdotH;
 	        pb.rgb += gi.light.color * I;
 	        return pb;
 	    }
