@@ -19,17 +19,24 @@
 			#pragma fragment frag
 			#include "UnityCG.cginc"
 
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				//float3 normal : NORMAL;
+				//float uv : TEXCOORD0;
+			};
+
 			struct v2f
 			{
 				float4 pos : SV_POSITION;
 				float4 screenuv : TEXCOORD1;
 			};
 
-			v2f vert(appdata_base v)
+			v2f vert(appdata v)
 			{
 				v2f o;
 				o.pos = UnityObjectToClipPos(v.vertex);
-				//o.screenuv = ComputeScreenPos(o.pos);
+				o.screenuv = ComputeScreenPos(o.pos);
 				return o;
 			}
 
@@ -38,9 +45,9 @@
 			fixed4 frag(v2f i) : SV_Target
 			{
 				float2 uv = i.screenuv.xy / i.screenuv.w;
-				float depth = 1 - Linear01Depth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv));
-				float thickness = abs(tex2D(_CameraDepthTexture, uv).r);
-				//return fixed4(depth, depth, depth, 1);
+				float front = tex2D(_CameraDepthTexture, uv).r;
+				float back = i.pos.z;
+				float thickness = front - back;
 				return fixed4(thickness, thickness, thickness, 1);
 			}
 			ENDCG
