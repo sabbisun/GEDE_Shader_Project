@@ -43,11 +43,11 @@ Shader "Custom/CrystalBall" {
 		}
 
 		//Turn onalpha blending
-		Blend DstColor One
+		//Blend DstColor One
 		//Turn off backface culling
-		Cull Off
-		ZWrite On
-		ColorMask 0
+		//Cull Off
+		//ZWrite On
+		//ColorMask 0
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standardfrag fullforwardshadows alpha
@@ -94,7 +94,7 @@ Shader "Custom/CrystalBall" {
 	        //Adding backlight illumination scaled by intensity parameter
 	        float VdotH = pow(saturate(dot(V, -H)), _Power) * _Scale;
 			float3 I = _Attenuation * (VdotH + _Ambient);
-			pb.a = VdotH;
+			//pb.a = VdotH;
 	        pb.rgb += gi.light.color * I;
 	        return pb;
 	    }

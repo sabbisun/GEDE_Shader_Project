@@ -10,17 +10,63 @@
 		_Distortion ("Distortion", Range(0,1)) = 0.0
 		_Attenuation ("Attenuation", Range(0,1)) = 0.0
 		_Ambient ("Ambient", Color) = (1,1,1,1)
+		_ThicknessTex ("Thickness_DontSetThis", 2D) = "black" {}
 	}
 	SubShader {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
 		LOD 200
 
+		/*Pass {
+			ZWrite On
+			ColorMask 0
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+        	#include "UnityCG.cginc"
+	        struct v2f {
+	            float4 pos : SV_POSITION;
+	        };
+	 
+	        v2f vert (appdata_base v)
+	        {
+	            v2f o;
+	            o.pos = UnityObjectToClipPos (v.vertex);
+	            return o;
+	        }
+
+	        half4 frag (v2f i) : COLOR
+	        {
+	            return half4 (i);
+	        }
+			ENDCG
+		}
+
+		Pass {
+			Cull Front
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#include "UnityCG.cginc"
+			struct v2f {
+	            float4 pos : SV_POSITION;
+	        };
+
+			v2f vert (appdata_base input) {
+				v2f o;
+				o.pos = UnityObjectToClipPos (input.vertex);
+				return o;
+			}
+			fixed4 frag (vertexOutput v, ) {
+				
+			}
+			ENDCG
+		}*/
+
 		//Turn onalpha blending
 		Blend DstColor One
 		//Turn off backface culling
 		Cull Off
-		ZWrite On
-		ColorMask 0
+
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standardfrag fullforwardshadows alpha
