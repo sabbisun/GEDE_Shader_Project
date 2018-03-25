@@ -11,7 +11,6 @@ Shader "Custom/CrystalBall" {
 		_Scale ("Scale", Range(0,5)) = 0.0
 		_Distortion ("Distortion", Range(0,1)) = 0.0
 		_Attenuation ("Attenuation", Range(0,1)) = 0.0
-		_Ambient ("Ambient", Color) = (1,1,1,1)
 	}
 	SubShader {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
@@ -93,7 +92,7 @@ Shader "Custom/CrystalBall" {
 	        //float I = pow(saturate((V*(-H))), _Power) * _Scale;
 	        //Adding backlight illumination scaled by intensity parameter
 	        float VdotH = pow(saturate(dot(V, -H)), _Power) * _Scale;
-			float3 I = _Attenuation * (VdotH + _Ambient);
+			float3 I = _Attenuation * (VdotH);
 			//pb.a = VdotH;
 	        pb.rgb += gi.light.color * I;
 	        return pb;

@@ -9,14 +9,13 @@
 		_Scale ("Scale", Range(0,5)) = 0.0
 		_Distortion ("Distortion", Range(0,1)) = 0.0
 		_Attenuation ("Attenuation", Range(0,1)) = 0.0
-		_Ambient ("Ambient", Color) = (1,1,1,1)
-		_ThicknessTex ("Thickness_DontSetThis", 2D) = "black" {}
+		_ThicknessTex ("Thickness", 2D) = "black" {}
 	}
 	SubShader {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
 		LOD 200
 
-		/*Pass {
+		Pass {
 			ZWrite On
 			ColorMask 0
 			CGPROGRAM
@@ -41,7 +40,7 @@
 			ENDCG
 		}
 
-		Pass {
+		/*Pass {
 			Cull Front
 			CGPROGRAM
 			#pragma vertex vert
@@ -75,6 +74,7 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _ThicknessTex;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -88,6 +88,7 @@
 		float _Distortion;
 		float _Attenuation;
 		float _Ambient;
+		float thickness;
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -112,8 +113,8 @@
 	        //float I = pow(saturate((V*(-H))), _Power) * _Scale;
 	        //Adding backlight illumination scaled by intensity parameter
 	        float VdotH = pow(saturate(dot(V, -H)), _Power) * _Scale;
-			float3 I = _Attenuation * (VdotH + _Ambient);
-			pb.a = VdotH;
+			float3 I = _Attenuation * (VdotH) * thickness;
+			//pb.a = VdotH + pb.a;
 	        pb.rgb += gi.light.color * I;
 	        return pb;
 	    }
@@ -130,6 +131,8 @@
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
 			o.Alpha = c.a;
+
+			thickness = tex2D(_ThicknessTex, IN.uv_MainTex).r;
 		}
 		ENDCG
 	}

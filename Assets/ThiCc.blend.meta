@@ -9,9 +9,11 @@ ModelImporter:
     400000: //RootNode
     2100000: default
     2100002: default__lightmap
+    2100004: default_001
     2300000: //RootNode
     3300000: //RootNode
     4300000: hi_midop
+    4300002: hi_midop_001
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
