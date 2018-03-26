@@ -1,12 +1,12 @@
 ﻿Shader "Custom/Testing" {
 	Properties{
-		_ThicknessTex("Thickness Texture", 2D) = "white" {}
+		//_ThicknessTex("Thickness Texture", 2D) = "white" {}
 		_Color("Main Color", Color) = (1,1,1,1)
 		_Sigma("Sigma", Float) = 1.0
 	}
 
 	SubShader{
-		//Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
+		Tags{ "Queue" = "Transparent" "RenderType" = "Transparent" }
 		Tags{ "RenderType" = "Opaque" }
 		LOD 200
 		
@@ -71,7 +71,7 @@
 			ENDCG
 		}
 
-		
+		BlendOp RevSub
 		BLEND One One
 		
 		Pass // Back
@@ -111,7 +111,7 @@
 			float4 frag(v2f input) : SV_Target
 			{
 				//float depthValue = Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(input.depth)).r);
-				float depthValue = -input.pos.z;
+				float depthValue = input.pos.z;
 				half4 depth;// = _Color;
 
 				depth.r = depthValue;

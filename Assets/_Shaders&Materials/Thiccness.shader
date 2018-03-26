@@ -117,7 +117,7 @@
 
 			//Adding to color and outputting
 	        pb.rgb += gi.light.color * I;
-	        //pb.a = thickness;
+	        pb.a = pb.a*(1-thickness);
 	        return pb;
 	    }
 
