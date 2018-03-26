@@ -22,7 +22,7 @@
 			struct appdata
 			{
 				float4 vertex : POSITION;
-				//float3 normal : NORMAL;
+				float3 normal : NORMAL;
 				//float uv : TEXCOORD0;
 			};
 
@@ -49,6 +49,45 @@
 				float back = i.pos.z;
 				float thickness = front - back;
 				return fixed4(thickness, thickness, thickness, 1);
+			}
+			ENDCG
+		}
+
+		Pass
+		{
+			Cull Back
+			CGPROGRAM
+			
+			#pragma vertex vert
+			#pragma fragment frag
+			#include "UnityCG.cginc"
+
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+				//float uv : TEXCOORD0;
+			};
+
+			struct v2f
+			{
+				float4 pos : SV_POSITION;
+				float4 screenuv : TEXCOORD1;
+			};
+
+			v2f vert(appdata v)
+			{
+				v2f o;
+				o.pos = UnityObjectToClipPos(v.vertex);
+				o.screenuv = ComputeScreenPos(o.pos);
+				return o;
+			}
+
+			sampler2D _CameraDepthTexture;
+
+			fixed4 frag(v2f i) : SV_Target
+			{
+				return fixed4(i.pos.z, i.pos.z, 1-i.pos.z, 1);
 			}
 			ENDCG
 		}

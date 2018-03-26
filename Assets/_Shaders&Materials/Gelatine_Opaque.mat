@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ZBuffer
-  m_Shader: {fileID: 4800000, guid: 9720800913c60cc4889073371f28fe22, type: 3}
+  m_Name: Gelatine_Opaque
+  m_Shader: {fileID: 4800000, guid: 27cbc20e0e97f49db8e2ad241b95c8a7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -55,27 +55,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Attenuation: 0
+    - _Attenuation: 0.468
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Distortion: 0
+    - _Distortion: 0.14
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 0
-    - _Scale: 0
+    - _Power: 3.3
+    - _Scale: 1.13
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Ambient: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.39251733, g: 0.65962595, b: 0.9705882, a: 0.416}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

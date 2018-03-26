@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Custom/CrystalBall" {
+Shader "Custom/Gelatine" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		//_MainTex ("Color (RGB) Alpha (A)", 2D) = "white" {}
@@ -15,7 +15,7 @@ Shader "Custom/CrystalBall" {
 		Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
 		LOD 200
 
-		/*Pass {
+		Pass {
 			ZWrite On
 			ColorMask 0
 			CGPROGRAM
@@ -38,11 +38,11 @@ Shader "Custom/CrystalBall" {
 	            return half4 (i);
 	        }
 			ENDCG
-		}*/
+		}
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standardfrag fullforwardshadows
+		#pragma surface surf Standardfrag fullforwardshadows alpha
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0

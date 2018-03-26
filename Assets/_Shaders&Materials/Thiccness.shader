@@ -9,6 +9,7 @@
 		_Scale ("Scale", Range(0,5)) = 0.0
 		_Distortion ("Distortion", Range(0,1)) = 0.0
 		_Attenuation ("Attenuation", Range(0,1)) = 0.0
+		_Ambient ("Ambient", Color) = (0,0,0,0)
 		_ThicknessTex ("Thickness", 2D) = "black" {}
 	}
 	SubShader {
@@ -87,7 +88,7 @@
 		float _Scale;
 		float _Distortion;
 		float _Attenuation;
-		float _Ambient;
+		fixed4 _Ambient;
 		float thickness;
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
@@ -101,21 +102,22 @@
 	    inline fixed4 LightingStandardfrag(SurfaceOutputStandard s, fixed3 viewDir, UnityGI gi) {
 	    	//Standard lighting as baseline to work from
 	        fixed4 pb = LightingStandard(s, viewDir, gi);
+
 	        //Vectors to the light and camera and surface normal
 	        float3 L = gi.light.dir;
 	        float3 V = viewDir;
 	        float3 N = s.Normal;
+
 	        //Computing halfway vector and applying distortion
 	        float3 H = (L + N * _Distortion);
-	        //Computing backlight intensity
-	        //float In = pow(saturate(dot(V, -H)), _Power) * _Scale;
-	        //Computing intensity with inherent thickness trickery
-	        //float I = pow(saturate((V*(-H))), _Power) * _Scale;
-	        //Adding backlight illumination scaled by intensity parameter
+
+	        //Computing backlight intensity with thickness texture
 	        float VdotH = pow(saturate(dot(V, -H)), _Power) * _Scale;
-			float3 I = _Attenuation * (VdotH) * thickness;
-			//pb.a = VdotH + pb.a;
+			float3 I = _Attenuation * (VdotH + _Ambient) * thickness;
+
+			//Adding to color and outputting
 	        pb.rgb += gi.light.color * I;
+	        //pb.a = thickness;
 	        return pb;
 	    }
 
