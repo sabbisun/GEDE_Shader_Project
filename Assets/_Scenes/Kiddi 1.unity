@@ -537,7 +537,7 @@ Prefab:
     - target: {fileID: 2307298, guid: c6dba36d30ee07d438cbe8bf654e2ef0, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b1fa690edecd94413a23a1cc21e6d1a8, type: 2}
+      objectReference: {fileID: 2100000, guid: 42162c43b62ef43dd833aba77176573f, type: 2}
     - target: {fileID: 2307298, guid: c6dba36d30ee07d438cbe8bf654e2ef0, type: 2}
       propertyPath: m_DynamicOccludee
       value: 1
