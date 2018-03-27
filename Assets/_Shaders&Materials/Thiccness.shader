@@ -63,9 +63,9 @@
 		}*/
 
 		//Turn onalpha blending
-		Blend DstColor One
+		//Blend DstColor One
 		//Turn off backface culling
-		Cull Off
+		//Cull Off
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
@@ -117,7 +117,7 @@
 
 			//Adding to color and outputting
 	        pb.rgb += gi.light.color * I;
-	        pb.a = pb.a*(1-thickness);
+	        //pb.a = pb.a*(1-thickness);
 	        return pb;
 	    }
 

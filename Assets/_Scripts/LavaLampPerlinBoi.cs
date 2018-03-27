@@ -19,9 +19,9 @@ public class LavaLampPerlinBoi : MonoBehaviour {
 	private float xCoord = 0;
 	public Material magicMaterial;
 
-	public AnimationCurve lightnessCurve;
+	//public AnimationCurve lightnessCurve;
 
-	public AnimationCurve whiteOut;
+	//public AnimationCurve whiteOut;
 
 	// Use this for initialization
 	void Start () {
